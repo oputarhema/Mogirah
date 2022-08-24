@@ -1,2 +1,1 @@
 # Mogirah
-hsdnas sa
