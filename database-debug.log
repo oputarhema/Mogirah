@@ -1,0 +1,8 @@
+11:15:05.031 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+11:15:05.202 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+11:15:37.151 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - codeman-be0aa-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 163ms, init: 0ms
+11:15:37.268 [NamespaceSystem-blocking-namespace-operation-dispatcher-6:codeman-be0aa-default-rtdb$-1347651647:] INFO com.firebase.core.namespace.StateManager - Namespace codeman-be0aa-default-rtdb status Active to Active
+11:53:16.310 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+11:53:16.321 [NamespaceSystem-akka.actor.default-dispatcher-13] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: codeman-be0aa-default-rtdb
+11:53:16.334 [NamespaceSystem-akka.actor.default-dispatcher-15] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for codeman-be0aa-default-rtdb
+11:53:16.345 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
