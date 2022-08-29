@@ -1,6 +1,6 @@
 ### Mogirah Portfolio Tool
 
-![Login Page](https://drive.google.com/uc?export=view&id=1YSeykhjSlgkUjZ5wYboCChgHO_khIZyf "Login page")
+![Login Page](https://1drv.ms/b/s!BKcYGnNV5Siw1R5_RKuKixkEN2Tt?e=daCb24SbWEy_4OZ5dCFQ5g&at=9 "Login page")
 
-## Student List Page
-![Student List Page](https://drive.google.com/uc?export=view&id=14VzlTYnA1UQ2ew5GWrduLpL6En8MdNzl "Student List Page")
+## Lecturer Dashboard Page
+![Student List Page](https://1drv.ms/i/s!BKcYGnNV5Siwh4ppHHMCU6UeBEDuHQ?e=_ja4HKrKm0C5GT-LDhrfPA&at=9 "Lecturer Dashboard Page")
