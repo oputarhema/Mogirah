@@ -16,7 +16,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="../../assets/images/fav.png" />
   </head>
   <body>
     <div class="container-scroller">
@@ -58,8 +58,8 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                <a class="dropdown-item" id="changePassword" href="../auth/change_password.html">
+                  <i class="mdi mdi-cached me-2 text-success"></i> Change Password </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../auth/logout.html" >
                   <i class="mdi mdi-logout me-2 text-primary"></i> Sign out </a>
@@ -94,7 +94,7 @@
              
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#studentsMenu" aria-expanded="false" aria-controls="studentsMenu">
-                <span class="menu-title">Students</span>
+                <span class="menu-title">Manage Students</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
@@ -106,8 +106,35 @@
               </div>
             </li>
             <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#lecturersMenu" aria-expanded="false"
+                aria-controls="lecturersMenu">
+                <span class="menu-title">Manage Lecturers</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="lecturersMenu">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Lecturer">Create</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Lecturers">List</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false" aria-controls="mangersMenu">
+                <span class="menu-title">Manage Managers</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="mangersMenu">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Manager">Create</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Managers">List</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#frameworkMenu" aria-expanded="false" aria-controls="frameworkMenu">
-                <span class="menu-title">Frameworks</span>
+                <span class="menu-title">Manage Frameworks</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
@@ -127,33 +154,6 @@
               <div class="collapse" id="portfolioMenu">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Portfolio">List</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#lecturersMenu" aria-expanded="false"
-                aria-controls="lecturersMenu">
-                <span class="menu-title">Lecturers</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="lecturersMenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Lecturer">Create</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Lecturers">List</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false" aria-controls="mangersMenu">
-                <span class="menu-title">Managers</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="mangersMenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Manager">Create</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Managers">List</a></li>
                 </ul>
               </div>
             </li>
@@ -184,7 +184,7 @@
                     <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Students <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5" id="studentsCount">10</h2>
+                    <h2 class="mb-5" id="studentsCount">--</h2>
                     <h6 class="card-text"></h6>
                   </div>
                 </div>
@@ -195,7 +195,7 @@
                     <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Managers <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5" id="managersCount">45</h2>
+                    <h2 class="mb-5" id="managersCount">--</h2>
                     <h6 class="card-text"></h6>
                   </div>
                 </div>
@@ -206,7 +206,7 @@
                     <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Frameworks <i class="mdi mdi-diamond mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5" id="frameworksCount">95</h2>
+                    <h2 class="mb-5" id="frameworksCount">--</h2>
                     <h6 class="card-text"></h6>
                   </div>
                 </div>
@@ -217,7 +217,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="container-fluid d-flex justify-content-between">
-              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © Rhema Oputa 2022</span>
                
             </div>
           </footer>

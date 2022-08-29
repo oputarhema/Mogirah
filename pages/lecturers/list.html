@@ -17,7 +17,7 @@
   <!-- Layout styles -->
   <link rel="stylesheet" href="../../assets/css/style.css">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="../../assets/images/fav.png" />
 </head>
 
 <body>
@@ -45,10 +45,10 @@
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+              <a class="dropdown-item" id="changePassword" href="../auth/change_password.html">
+                <i class="mdi mdi-cached me-2 text-success"></i> Change Password </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="../auth/logout.html">
+              <a class="dropdown-item" href="../auth/logout.html" >
                 <i class="mdi mdi-logout me-2 text-primary"></i> Sign out </a>
             </div>
           </li>
@@ -80,9 +80,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#studentsMenu" aria-expanded="false"
-              aria-controls="studentsMenu">
-              <span class="menu-title">Students</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#studentsMenu" aria-expanded="false" aria-controls="studentsMenu">
+              <span class="menu-title">Manage Students</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
@@ -94,36 +93,9 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#frameworkMenu" aria-expanded="false"
-              aria-controls="frameworkMenu">
-              <span class="menu-title">Frameworks</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="frameworkMenu">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Frameworks">Create</a></li>
-                <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Frameworks">List</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#portfolioMenu" aria-expanded="false"
-              aria-controls="portfolioMenu">
-              <span class="menu-title">Portfolios</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="portfolioMenu">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Portfolio">List</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#lecturersMenu" aria-expanded="false"
               aria-controls="lecturersMenu">
-              <span class="menu-title">Lecturers</span>
+              <span class="menu-title">Manage Lecturers</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
@@ -135,9 +107,8 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false"
-              aria-controls="mangersMenu">
-              <span class="menu-title">Managers</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false" aria-controls="mangersMenu">
+              <span class="menu-title">Manage Managers</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
@@ -145,6 +116,31 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Manager">Create</a></li>
                 <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Managers">List</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#frameworkMenu" aria-expanded="false" aria-controls="frameworkMenu">
+              <span class="menu-title">Manage Frameworks</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="frameworkMenu">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Frameworks">Create</a></li>
+                <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Frameworks">List</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#portfolioMenu" aria-expanded="false" aria-controls="portfolioMenu">
+              <span class="menu-title">Portfolios</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="portfolioMenu">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Portfolio">List</a></li>
               </ul>
             </div>
           </li>
@@ -167,7 +163,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title" id="listTableTitle">Striped Table</h4>
-                  </p>
+                  <span id="createBtnInListView" class="float-right"></span>
                   <table id="myTable">
                     <p id="tableLoading">Loading..</p>
                   </table>
@@ -200,9 +196,6 @@
   <script src="../../assets/js/off-canvas.js"></script>
   <script src="../../assets/js/hoverable-collapse.js"></script>
   <script src="../../assets/js/misc.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/gh/Rakhmadi/RdataTB@master/dist/index.js"></script>
-
   <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.js" data-semver="1.9.4"
     data-require="datatables@*"></script>
@@ -213,6 +206,9 @@
   <script src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
   <script src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
   <script src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
+
   <script src="../../assets/js/firebase.js" type="module"></script>
 
 

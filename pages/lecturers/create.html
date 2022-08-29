@@ -16,7 +16,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="../../assets/images/fav.png" />
   </head>
   <body>
     <div class="container-scroller">
@@ -40,8 +40,8 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                <a id="changePassword" class="dropdown-item" href="../auth/change_password.html">
+                  <i class="mdi mdi-cached me-2 text-success"></i> Change Password </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../auth/logout.html" >
                   <i class="mdi mdi-logout me-2 text-primary"></i> Sign out </a>
@@ -75,7 +75,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#studentsMenu" aria-expanded="false" aria-controls="studentsMenu">
-                <span class="menu-title">Students</span>
+                <span class="menu-title">Manage Students</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
@@ -87,8 +87,35 @@
               </div>
             </li>
             <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#lecturersMenu" aria-expanded="false"
+                aria-controls="lecturersMenu">
+                <span class="menu-title">Manage Lecturers</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="lecturersMenu">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Lecturer">Create</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Lecturers">List</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false" aria-controls="mangersMenu">
+                <span class="menu-title">Manage Managers</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="mangersMenu">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Manager">Create</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Managers">List</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#frameworkMenu" aria-expanded="false" aria-controls="frameworkMenu">
-                <span class="menu-title">Frameworks</span>
+                <span class="menu-title">Manage Frameworks</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
@@ -111,44 +138,17 @@
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#lecturersMenu" aria-expanded="false"
-                aria-controls="lecturersMenu">
-                <span class="menu-title">Lecturers</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="lecturersMenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Lecturer">Create</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Lecturers">List</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#mangersMenu" aria-expanded="false" aria-controls="mangersMenu">
-                <span class="menu-title">Managers</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="mangersMenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="./create.html?whatToCreate=Manager">Create</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="./list.html?whatToList=Managers">List</a></li>
-                </ul>
-              </div>
-            </li>
           </ul>
         </nav>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Create <span class="pageTitle">Entity</span> </h3>
+              <h3 class="page-title"> <span class="createOrEdit">Create</span> <span class="pageTitle">Entity</span> </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Create</li>
+                  <li class="breadcrumb-item active" aria-current="page"><span class="createOrEdit">Create</span></li>
                 </ol>
               </nav>
             </div>
@@ -156,8 +156,8 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Create <span class="pageTitle">________</span></h4>
-                    <p class="card-description"> Creation form</p>
+                    <h4 class="card-title"><span class="createOrEdit">Create</span> <span class="pageTitle">________</span></h4>
+                    <p class="card-description"> <span class="createOrEdit">Creation</span> form</p>
                     <form class="forms-sample" id="creation" action="#" method="post" onsubmit="return false;">
                       loading...
                     </form>
@@ -170,7 +170,7 @@
           <!-- partial:../../partials/_footer.html -->
           <footer class="footer">
             <div class="container-fluid d-flex justify-content-between">
-              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © Rhema Oputa 2022</span>
                
             </div>
           </footer>
