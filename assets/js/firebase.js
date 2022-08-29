@@ -215,6 +215,7 @@ const changePassword = () => {
       console.log(showobj, "============== showobj =============")
       firebase.database().ref(userType + '/' + showobj.id).set({
         ...showobj,
+        password: newPassword,
         changedPassword: true
       });
       window.location.href = "/";
@@ -539,12 +540,12 @@ async function deleteItem(item) {
       console.log(item, "=========== item =================");
       var listRef = firebase.database().ref("/" + whatToList.toLowerCase());
       await listRef.child(item).remove();
-      const lol = ["students", "lecturers", "managers"]
-      if(lol.includes(whatToList.toLowerCase())) {
-        var user = firebase.auth().currentUser;
-        await item.updateEmail(`deleted`+item+"@mogirah.com")
+      // const lol = ["students", "lecturers", "managers"]
+      // if(lol.includes(whatToList.toLowerCase())) {
+      //   var user = firebase.auth().currentUser;
+      //   await user.updateEmail(`money@qa.team`)
 
-      }
+      // }
       Swal.fire(
         'Deleted!',
         'Record has been deleted.',
@@ -766,6 +767,7 @@ const openGradingBox = async (el) => {
       }
       firebase.database().ref('/grading/').push(oj);
       Swal.fire("Thank you for grading!");
+      list();
     }
   }
 }
@@ -946,10 +948,11 @@ async function generateTable(table, data) {
               return x.student === student
             });
             console.log(ooobj, "=====+++++++++++++========= ooobj")
+            const llen = ooobj.length;
             if(ooobj.length > 0) {
               textt = `
-              Score: ${gradesObj[ooobj[0].score] || "N/A"} \n
-              Remarks: ${ooobj[0].remark || "N/A"}`
+              Score: ${gradesObj[ooobj[llen-1].score] || "N/A"} \n
+              Remarks: ${ooobj[llen-1].remark || "N/A"}`
             } else {
               textt = `
                 Score: N/A \n
@@ -988,9 +991,7 @@ async function generateTable(table, data) {
         if(from && from.toLowerCase() === "portfolio") {
           cellAction.innerHTML = `
           <a href="./list.html?whatToList=Evidence&id=${elementID}" class="btn btn-info viewbtn" id="${elementID}" >View</a> 
-          <span id="${elementID}" class="swal btn btn-secondary">Grade +</span>
-          <a href="./create.html?action=edit&whatToCreate=${editt}&id=${elementID}" class="btn btn-primary editbtn" id="${elementID}" >Edit</a>  
-          <span class="btn btn-danger deletebtn" id="${elementID}">Delete</span>`;
+          <span id="${elementID}" class="swal btn btn-secondary">Grade +</span>`
           const commentBtns = document.querySelectorAll("span.swal");
           for (let o = 0; o < commentBtns.length; o++) {
             commentBtns[o].addEventListener("click", openGradingBox)
