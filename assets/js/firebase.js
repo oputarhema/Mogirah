@@ -5,13 +5,14 @@
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCGkoFYR8-JNAKrbVc9_mAPsdnsKGz17IM",
-  authDomain: "codeman-be0aa.firebaseapp.com",
-  projectId: "codeman-be0aa",
-  storageBucket: "codeman-be0aa.appspot.com",
-  messagingSenderId: "523056429752",
-  appId: "1:523056429752:web:cf9cdbd61b8c269512124d",
-  measurementId: "G-DQBXXJSVYK"
+  apiKey: "AIzaSyAlu1r9e9Sm2j05l3kOBVS1AvhkgfnEbhc",
+  authDomain: "mogirah-75a04.firebaseapp.com",
+  databaseURL: "https://mogirah-75a04-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "mogirah-75a04",
+  storageBucket: "mogirah-75a04.appspot.com",
+  messagingSenderId: "722838608421",
+  appId: "1:722838608421:web:2b113ff8b0c6fedc477dcc",
+  measurementId: "G-7W7XSRLMKJ"
 };
 
 const correctNamesForHeaders = {
@@ -58,6 +59,8 @@ const gradesObj = {
 let itemToEditObj;
 
 var authCreateForUserTypes = ["manager", "student", "lecturer"];
+
+const from = queryingURLParams("from");
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -827,8 +830,11 @@ function generateTableHead(table, data) {
   let thead = table.createTHead();
   let row = thead.insertRow();
   data = restructureObj(data);
-  data = Object.keys(data);
-  for (let key of data) {
+  if(whatToList.toLowerCase() === "competencies" && from && from.toLowerCase() === "portfolio"){
+    data["grade"] = "--"
+  }
+  const objKeys = Object.keys(data);
+  for (let key of objKeys) {
     let th = document.createElement("th");
     if(key.toLowerCase() === "comment") {
       key = "Manager's comment"
@@ -853,6 +859,9 @@ async function generateTable(table, data) {
     let createdBy = element.createdBy;
 
     let row = table.insertRow();
+    if(whatToList.toLowerCase() === "competencies" && from && from.toLowerCase() === "portfolio"){
+      element["grade"] = "--"
+    }
     for (let key in element) {
       let cell = row.insertCell();
       let text;
@@ -884,7 +893,7 @@ async function generateTable(table, data) {
           }
         } else if (key.toLowerCase() === "manager") {
           let dbRef1 = firebase.database().ref("/managers");
-          const snapshot = await dbRef1.orderByKey().equalTo(element[key]).once("value");
+          const snapshot = await dbRef1.orderByChild("userID").equalTo(element[key]).once("value");
           console.log(snapshot.val(), snapshot.key);
           if (snapshot.val()) {
             const oo = firebaseSnapshotToArrayOfObjects(snapshot.val());
@@ -943,7 +952,7 @@ async function generateTable(table, data) {
           if (snapshot.val()) {
             console.log(snapshot.val())
             const ooo = firebaseSnapshotToArrayOfObjects(snapshot.val());
-            console.log(ooo, "================= ooo ==============")
+            console.log(ooo, student, "================= ooo, student ==============")
             const ooobj = ooo.filter(x => {
               return x.student === student
             });
@@ -1006,7 +1015,7 @@ async function generateTable(table, data) {
       if (userType === "managers" || userType === "lecturers") {
         cellAction.innerHTML = `<a href="./list.html?whatToList=Competencies&id=${elementFr}&from=portfolio&stu=${createdBy}" class="btn btn-info viewbtn" id="${elementID}" >View</a>`;
       } else {
-        cellAction.innerHTML = `<a href="./list.html?whatToList=Competencies&id=${elementFr}&from=portfolio" class="btn btn-info viewbtn" id="${elementID}" >View</a> 
+        cellAction.innerHTML = `<a href="./list.html?whatToList=Competencies&id=${elementFr}&from=portfolio&stu=${createdBy}" class="btn btn-info viewbtn" id="${elementID}" >View</a> 
         <a href="./create.html?action=edit&whatToCreate=${editt}&id=${elementID}" class="btn btn-primary editbtn" id="${elementID}" >Edit</a>  
         <span class="btn btn-danger deletebtn" id="${elementID}">Delete</span>`;
       }
@@ -1074,9 +1083,10 @@ const restructureObj = (obj) => {
   let newObj = {}
   for (let i = 0; i < keys.length; i++) {
     if (keys[i].toLowerCase() === "name") {
-      arr.splice(1, 0, keys[i]);
+      arr.splice(1, 0, "name", "description");
     } else if (keys[i].toLowerCase() === "description") {
-      arr.splice(2, 0, keys[i]);
+      // arr.splice(2, 0, keys[i]);
+      continue;
     } else {
       arr.push(keys[i])
     }
