@@ -296,7 +296,7 @@ if (window.location.href.includes("create.html")) {
 </div>
 <div class="form-group">
   <label for="description">Description</label>
-  <input type="text" class="form-control" id="description" name="description" placeholder="Email">
+  <input type="text" class="form-control" id="description" name="description" placeholder="description">
 </div>
 <div class="form-group">
   <label for="exampleSelectGender">Frameworks</label>`;
